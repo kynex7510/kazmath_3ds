@@ -38,5 +38,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <kazmath/aabb3.h>
 #include <kazmath/ray2.h>
 #include <kazmath/ray3.h>
+#include <kazmath/3ds.h>
 
 #endif /* KAZMATH_H_INCLUDED */

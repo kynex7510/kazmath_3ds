@@ -29,44 +29,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <math.h>
 #include <float.h>
 
-#ifndef kmScalar
-#ifdef USE_DOUBLE_PRECISION
-#define kmScalar double
-#define kmEpsilon DBL_EPSILON
-#else
-#define kmScalar float
-#define kmEpsilon FLT_EPSILON
-#endif
-
-#endif
-
-#ifndef kmBool
-#define kmBool unsigned char
-#endif
-
-#ifndef kmUchar
-#define kmUchar unsigned char
-#endif
-
-#ifndef kmEnum
-#define kmEnum unsigned int
-#endif
-
-#ifndef kmUint
-#define kmUint unsigned int
-#endif
-
-#ifndef kmInt
-#define kmInt int
-#endif
-
-#ifndef KM_FALSE
 #define KM_FALSE 0
-#endif
-
-#ifndef KM_TRUE
 #define KM_TRUE 1
-#endif
 
 #define kmPI 3.14159265358979323846f
 #define kmPIOver180  (kmPI / 180.0f)
@@ -76,6 +40,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define KM_CONTAINS_PARTIAL (kmEnum)1
 #define KM_CONTAINS_ALL (kmEnum)2
 
+typedef unsigned char kmBool;
+typedef unsigned char kmUchar;
+typedef unsigned int kmEnum;
+typedef unsigned int vkmUint;
+typedef int kmInt;
+
+#ifdef USE_DOUBLE_PRECISION
+#define kmEpsilon DBL_EPSILON
+typedef double kmScalar;
+#else
+#define kmEpsilon FLT_EPSILON
+typedef float kmScalar;
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -83,24 +61,24 @@ extern "C" {
 /**
  * Returns the square of s (e.g. s*s)
  */
-extern kmScalar kmSQR(kmScalar s);
+static inline kmScalar kmSQR(kmScalar s) { return s*s; }
 
 /**
  * Returns degrees as radians.
  */
-extern kmScalar kmDegreesToRadians(kmScalar degrees);
+static inline kmScalar kmDegreesToRadians(kmScalar degrees) { return degrees * kmPIOver180; }
 
 /**
  * Returns radians as degrees
  */
-extern kmScalar kmRadiansToDegrees(kmScalar radians);
+static inline kmScalar kmRadiansToDegrees(kmScalar radians) { return radians * kmPIUnder180; }
 
-extern kmScalar kmMin(kmScalar lhs, kmScalar rhs);
-extern kmScalar kmMax(kmScalar lhs, kmScalar rhs);
-extern kmBool kmAlmostEqual(kmScalar lhs, kmScalar rhs);
+static inline kmScalar kmMin(kmScalar lhs, kmScalar rhs) { return (lhs < rhs)? lhs : rhs; }
+static inline kmScalar kmMax(kmScalar lhs, kmScalar rhs) { return (lhs > rhs)? lhs : rhs; }
+static inline kmBool kmAlmostEqual(kmScalar lhs, kmScalar rhs) { return (fabs(lhs - rhs) <= kmEpsilon * fmax(1.0f, fmax(lhs, rhs))); }
 
-extern kmScalar kmClamp(kmScalar x, kmScalar min, kmScalar max);
-extern kmScalar kmLerp(kmScalar x, kmScalar y, kmScalar factor);
+static inline kmScalar kmClamp(kmScalar x, kmScalar min, kmScalar max) { return x < min ? min : (x > max ? max : x); }
+static inline kmScalar kmLerp(kmScalar x, kmScalar y, kmScalar factor) { return x + factor * ( y - x ); }
 
 #ifdef __cplusplus
 }

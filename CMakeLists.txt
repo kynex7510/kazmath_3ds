@@ -7,31 +7,31 @@ project(kazmath C)
 option(KAZMATH_BUILD_GL_UTILS "Build GL utils" ON)
 
 set(KAZMATH_SOURCES
-    ./kazmath/mat4.c
-    ./kazmath/mat3.c
-    ./kazmath/plane.c
-    ./kazmath/vec4.c
-    ./kazmath/quaternion.c
-    ./kazmath/vec2.c
-    ./kazmath/vec3.c
-    ./kazmath/utility.c
-    ./kazmath/aabb2.c
-    ./kazmath/aabb3.c
-    ./kazmath/ray2.c
-    ./kazmath/ray3.c
+    Source/mat4.c
+    Source/mat3.c
+    Source/plane.c
+    Source/vec4.c
+    Source/quaternion.c
+    Source/vec2.c
+    Source/vec3.c
+    Source/aabb2.c
+    Source/aabb3.c
+    Source/ray2.c
+    Source/ray3.c
+    Source/3ds.c
 )
 
 if (KAZMATH_BUILD_GL_UTILS)
     set(KAZMATH_SOURCES
         ${KAZMATH_SOURCES}
-        ./kazmath/GL/mat4stack.c
-        ./kazmath/GL/matrix.c
+        Source/GL/mat4stack.c
+        Source/GL/matrix.c
     )
 endif()
 
 add_library(kazmath STATIC ${KAZMATH_SOURCES})
-target_compile_options(kazmath "-Wall")
-target_include_directories(kazmath PUBLIC kazmath kazmath/GL)
+target_compile_options(kazmath PRIVATE "-Wall")
+target_include_directories(kazmath PUBLIC Include)
 
 install(TARGETS kazmath)
 install(DIRECTORY Include/ DESTINATION include)
