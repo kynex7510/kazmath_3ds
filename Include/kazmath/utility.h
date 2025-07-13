@@ -35,6 +35,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define kmPI 3.14159265358979323846f
 #define kmPIOver180  (kmPI / 180.0f)
 #define kmPIUnder180 (180.0 / kmPI)
+#define kmEpsilon FLT_EPSILON
 
 #define KM_CONTAINS_NONE (kmEnum)0
 #define KM_CONTAINS_PARTIAL (kmEnum)1
@@ -45,14 +46,7 @@ typedef unsigned char kmUchar;
 typedef unsigned int kmEnum;
 typedef unsigned int vkmUint;
 typedef int kmInt;
-
-#ifdef USE_DOUBLE_PRECISION
-#define kmEpsilon DBL_EPSILON
-typedef double kmScalar;
-#else
-#define kmEpsilon FLT_EPSILON
 typedef float kmScalar;
-#endif
 
 #ifdef __cplusplus
 extern "C" {
