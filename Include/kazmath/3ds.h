@@ -12,6 +12,8 @@ extern "C" {
 kmMat4* kmMat4OrthoTilt(kmMat4* pOut, kmScalar left, kmScalar right, kmScalar bottom, kmScalar top,
     kmScalar nearVal, kmScalar farVal, bool isLeftHanded);
 
+kmMat4* kmMat4PerspTilt(kmMat4* pOut, kmScalar fovy, kmScalar aspect, kmScalar near, kmScalar far, bool isLeftHanded);
+
 kmMat4* kmMat4PerspStereoTilt(kmMat4* pOut, kmScalar fovy, kmScalar aspect, kmScalar near, kmScalar far,
     kmScalar iod, kmScalar screen, bool isLeftHanded);
 
