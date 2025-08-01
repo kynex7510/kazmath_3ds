@@ -63,9 +63,19 @@ static inline kmScalar kmSQR(kmScalar s) { return s*s; }
 static inline kmScalar kmDegreesToRadians(kmScalar degrees) { return degrees * kmPIOver180; }
 
 /**
- * Returns radians as degrees
+ * Returns radians as degrees.
  */
 static inline kmScalar kmRadiansToDegrees(kmScalar radians) { return radians * kmPIUnder180; }
+
+/**
+ * Returns revolutions as radians.
+ */
+static inline kmScalar kmRevolutionsToRadians(kmScalar revolutions) { return revolutions * kmPI * 2; }
+
+/**
+ * Returns radians as revolutions.
+ */
+static inline kmScalar kmRadiansToRevolutions(kmScalar radians) { return radians / kmPI / 2; }
 
 static inline kmScalar kmMin(kmScalar lhs, kmScalar rhs) { return (lhs < rhs)? lhs : rhs; }
 static inline kmScalar kmMax(kmScalar lhs, kmScalar rhs) { return (lhs > rhs)? lhs : rhs; }
