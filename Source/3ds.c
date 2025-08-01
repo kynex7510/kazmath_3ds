@@ -1,4 +1,4 @@
-// Adapted from https://github.com/devkitPro/citro3d/tree/master/source/maths
+// Adapted from https://github.com/devkitPro/citro3d/tree/9f21cf7b380ce6f9e01a0420f19f0763e5443ca7/source/maths
 
 /**
  * Copyright (C) 2014-2018 fincs
